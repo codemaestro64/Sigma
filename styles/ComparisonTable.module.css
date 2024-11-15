@@ -1,0 +1,104 @@
+.comparisonTableContainer {
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #e0e0e0;
+}
+
+.comparisonTable {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin-top: 20px;
+  background: rgba(25, 25, 50, 0.9);
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+  max-width: 1000px;
+}
+
+.comparisonTable th {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #00d1ff;
+  background: rgba(50, 50, 75, 0.8);
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.comparisonTable th:first-child {
+  border-radius: 10px 0 0 10px;
+}
+
+.comparisonTable th:last-child {
+  border-radius: 0 10px 10px 0;
+}
+
+.comparisonTable td {
+  padding: 15px;
+  font-size: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  text-align: left;
+}
+
+.comparisonTable tbody tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* Feature column styles */
+.comparisonTable td:first-child {
+  color: #00d1ff;
+  font-weight: 500;
+  border-radius: 10px 0 0 10px;
+}
+
+/* Sigma.Fun column */
+.comparisonTable td:nth-child(2) {
+  background: rgba(0, 209, 255, 0.1);
+}
+
+/* Other Platforms column */
+.comparisonTable td:nth-child(3) {
+  background: rgba(255, 0, 102, 0.1);
+  border-radius: 0 10px 10px 0;
+}
+
+.iconContainer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: flex-start;
+}
+
+/* Sigma.Fun text and icon style */
+.checkIcon {
+  color: #00ff88;
+}
+
+/* Other Platforms text and icon style */
+.xIcon {
+  color: #ff0066;
+}
+
+/* Hover effects */
+.comparisonTable tbody tr {
+  transition: all 0.3s ease;
+}
+
+.comparisonTable tbody tr:hover {
+  background: rgba(0, 209, 255, 0.1);
+  transform: scale(1.01);
+}
+
+/* Title styling */
+.tableTitle {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00d1ff;
+  text-shadow: 0 0 10px rgba(0, 209, 255, 0.5);
+} 

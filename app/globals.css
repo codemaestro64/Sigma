@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 220 20% 10%;
+  --foreground: 220 10% 98%;
+  --card: 220 20% 12%;
+  --card-foreground: 220 10% 98%;
+  --popover: 220 20% 12%;
+  --popover-foreground: 220 10% 98%;
+  --primary: 220 80% 60%;
+  --primary-foreground: 220 10% 98%;
+  --secondary: 220 20% 20%;
+  --secondary-foreground: 220 10% 98%;
+  --muted: 220 20% 20%;
+  --muted-foreground: 220 10% 70%;
+  --accent: 220 60% 50%;
+  --accent-foreground: 220 10% 98%;
+  --destructive: 0 60% 50%;
+  --destructive-foreground: 220 10% 98%;
+  --border: 220 20% 20%;
+  --input: 220 20% 16%;
+  --ring: 220 80% 60%;
+  --radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: 0 0% 3.9%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 3.9%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.9%;
+    --popover-foreground: 0 0% 98%;
+    --primary: 0 0% 98%;
+    --primary-foreground: 0 0% 9%;
+    --secondary: 0 0% 14.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 14.9%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 0 0% 14.9%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.9%;
+    --input: 0 0% 14.9%;
+    --ring: 0 0% 83.1%;
+    --chart-1: 220 70% 50%;
+    --chart-2: 160 60% 45%;
+    --chart-3: 30 80% 55%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none ring-offset-background;
+  }
+  .btn-primary {
+    @apply bg-primary text-primary-foreground hover:bg-primary/90;
+  }
+  .btn-secondary {
+    @apply bg-secondary text-secondary-foreground hover:bg-secondary/80;
+  }
+  .btn-ghost {
+    @apply hover:bg-accent hover:text-accent-foreground;
+  }
+}
+
+@layer utilities {
+  .animate-hover {
+    @apply transition-all duration-300 hover:shadow-lg;
+  }
+  .animate-hover-zoom {
+    @apply transition-all duration-300 hover:scale-105 hover:shadow-lg;
+  }
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+  .animate-marquee {
+    animation: marquee 140s linear infinite;
+  }
+  .animate-marquee-vertical {
+    animation: marquee-vertical var(--duration) linear infinite;
+  }
+  .animate-border-beam {
+    animation: border-beam var(--duration) linear infinite;
+    animation-delay: var(--delay);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .7;
+  }
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes slide-reverse {
+  from {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(calc(-100% - var(--gap)));
+  }
+}
+
+@keyframes border-pulse-blue {
+  0%, 100% {
+    border-color: rgb(59 130 246 / 0.5);
+    box-shadow: 0 0 0px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    border-color: rgb(59 130 246 / 1);
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.6);
+  }
+}
+
+@keyframes border-pulse-green {
+  0%, 100% {
+    border-color: rgb(21, 179, 1);
+    box-shadow: 0 0 0px rgba(21, 179, 1, 0.3);
+  }
+  50% {
+    border-color: rgb(0, 255, 0);
+    box-shadow: 0 0 20px rgba(0, 255, 0, 0.6);
+  }
+}
+
+@keyframes border-pulse-red {
+  0%, 100% {
+    border-color: rgb(163, 0, 0);
+    box-shadow: 0 0 15px rgba(163, 0, 0, 0.3);
+  }
+  50% {
+    border-color: rgb(255, 0, 0);
+    box-shadow: 0 0 30px rgba(255, 0, 0, 0.6);
+  }
+}
+
+.animate-border-pulse-blue {
+  animation: border-pulse-blue 1s ease-in-out infinite;
+}
+
+.animate-border-pulse-green {
+  animation: border-pulse-green 1s ease-in-out infinite;
+}
+
+.animate-border-pulse-red {
+  animation: border-pulse-red 1s ease-in-out infinite;
+}
