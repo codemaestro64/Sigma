@@ -233,7 +233,7 @@ export default function ExplorePage() {
                       
                       {/* Current page and neighbors */}
                       {Array.from({ length: 3 }, (_, i) => {
-                        let pageNumber;
+                        let pageNumber:any;
                         if (currentPage <= 2) {
                           pageNumber = i + 1;
                         } else if (currentPage >= totalPages - 1) {

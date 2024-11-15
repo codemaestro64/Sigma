@@ -48,7 +48,7 @@ export function TopHolders({ token }: TopHoldersProps) {
     return <div className="text-destructive">Error loading holders</div>;
   }
 
-  const holders = (data?.token?.holders || []).filter(holder => 
+  const holders = (data?.token?.holders || []).filter((holder: any) => 
     BigInt(holder.balance) > BigInt(0)
   );
 

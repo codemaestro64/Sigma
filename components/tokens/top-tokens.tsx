@@ -64,7 +64,7 @@ export function TopTokens({ tokens }: { tokens?: Token[] }) {
           {sortedTokens.map((token, index) => {
             const positionChange = getPositionChange(token.address);
             const price = prices[token.address] || 0;
-            const usdPrice = price * ethUsdPrice;
+            const usdPrice = +price * ethUsdPrice;
 
             return (
               <Link

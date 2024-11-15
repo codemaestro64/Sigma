@@ -10,13 +10,13 @@ import { FAIR_LAUNCH_ABI } from '@/lib/contracts/abi-types';
 
 export function useGlobalEvents() {
   const publicClient = usePublicClient();
-  const { addToken, updatePrice } = useTokenStore();
+  const { updatePrice } = useTokenStore();
 
   useWatchContractEvent({
     address: FAIR_LAUNCH_ADDRESS,
     abi: FAIR_LAUNCH_ABI,
     eventName: 'TokensBought',
-    onLogs: async (logs) => {
+    onLogs: async (logs: any) => {
       for (const log of logs) {
         if (!log.args) continue;
         
@@ -28,7 +28,7 @@ export function useGlobalEvents() {
         if (!tokenAddress) continue;
 
         try {
-          const result = await publicClient.readContract({
+          const result = await publicClient?.readContract({
             address: FAIR_LAUNCH_ADDRESS,
             abi: FAIR_LAUNCH_ABI,
             functionName: 'getEthOut',
@@ -49,7 +49,7 @@ export function useGlobalEvents() {
     address: FAIR_LAUNCH_ADDRESS,
     abi: FAIR_LAUNCH_ABI,
     eventName: 'TokensSold',
-    onLogs: async (logs) => {
+    onLogs: async (logs: any) => {
       for (const log of logs) {
         if (!log.args) continue;
         
@@ -61,7 +61,7 @@ export function useGlobalEvents() {
         if (!tokenAddress) continue;
 
         try {
-          const result = await publicClient.readContract({
+          const result = await publicClient?.readContract({
             address: FAIR_LAUNCH_ADDRESS,
             abi: FAIR_LAUNCH_ABI,
             functionName: 'getEthOut',

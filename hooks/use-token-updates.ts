@@ -71,7 +71,7 @@ const updateTokenStats = async (
       SUBGRAPH_URL,
       GET_TOKEN_EVENTS,
       { tokenAddress: tokenAddress.toLowerCase() }
-    );
+    ) as any;
 
     if (!mounted.current) return;
 

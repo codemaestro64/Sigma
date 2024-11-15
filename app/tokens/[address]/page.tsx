@@ -40,7 +40,7 @@ export default function TokenPage({ params }: TokenPageProps) {
   useEffect(() => {
     if (!tokenData) {
       useTokenStore.getState().updateToken(address, {
-        address,
+        // address,
         transactions: [],
         lastUpdate: Date.now(),
       });
@@ -123,7 +123,7 @@ export default function TokenPage({ params }: TokenPageProps) {
       </div>
 
       <div className="mt-6">
-        <TransactionHistory token={mergedTokenData} />
+        <TransactionHistory token_address={mergedTokenData?.token_address} />
       </div>
     </div>
   );

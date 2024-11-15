@@ -29,18 +29,18 @@ export function useTokenSwap(tokenAddress: string, isBuying: boolean) {
     abi: FAIR_LAUNCH_ERC20_TOKEN_ABI,
     functionName: 'allowance',
     args: userAddress && !isBuying ? [userAddress, FAIR_LAUNCH_ADDRESS] : undefined,
-    enabled: !!userAddress && !isBuying,
-    watch: true,
+    // enabled: !!userAddress && !isBuying,
+    // watch: true,
   });
 
   // For Buy: Calculate tokens out when ETH amount changes
   const { data: tokensOutData } = useReadContract({
-    address: FAIR_LAUNCH_ADDRESS,
+    address: FAIR_LAUNCH_ADDRESS as `0x${string}`,
     abi: FAIR_LAUNCH_ABI,
     functionName: 'getTokensOut',
     args: amount && isBuying ? [tokenAddress, parseEther(amount)] : undefined,
-    enabled: !!amount && !!tokenAddress && isBuying,
-    watch: true,
+    // enabled: !!amount && !!tokenAddress && isBuying,
+    // watch: true,
   });
 
   // For Sell: Calculate ETH out when token amount changes
@@ -49,8 +49,8 @@ export function useTokenSwap(tokenAddress: string, isBuying: boolean) {
     abi: FAIR_LAUNCH_ABI,
     functionName: 'getEthOut',
     args: amount && !isBuying ? [tokenAddress, parseEther(amount)] : undefined,
-    enabled: !!amount && !!tokenAddress && !isBuying,
-    watch: true,
+    // enabled: !!amount && !!tokenAddress && !isBuying,
+    // watch: true,
   });
 
   // Update receive amount based on buy/sell mode
@@ -143,7 +143,7 @@ export function useTokenSwap(tokenAddress: string, isBuying: boolean) {
       const requiredAmount = parseEther(amount);
       
       // Check if we need approval first
-      if (!allowance || BigInt(allowance) < BigInt(requiredAmount)) {
+      if (!allowance || BigInt(+allowance) < BigInt(requiredAmount)) {
         console.log('Approving tokens...');
         
         const approveConfig = {
@@ -151,7 +151,7 @@ export function useTokenSwap(tokenAddress: string, isBuying: boolean) {
           abi: FAIR_LAUNCH_ERC20_TOKEN_ABI,
           functionName: 'approve',
           args: [FAIR_LAUNCH_ADDRESS, requiredAmount],
-        } as const;
+        } as any;
 
         const approveHash = await writeContractAsync(approveConfig);
         console.log('Approve transaction hash:', approveHash);
@@ -198,7 +198,7 @@ export function useTokenSwap(tokenAddress: string, isBuying: boolean) {
     isBuySuccess: isSuccess,
     isSellSuccess: isSuccess,
     needsApproval: !isBuying && allowance && amount ? 
-      BigInt(parseEther(amount)) > BigInt(allowance) : 
+      BigInt(parseEther(amount)) > BigInt(+allowance) : 
       false,
     userAddress,
   };

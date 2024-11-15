@@ -26,7 +26,7 @@ export function SocialLinks({ control }: SocialLinksProps) {
         name="socials.twitter"
         render={({ field, formState }) => (
           <FormItem>
-            <FormLabel className={formState.errors.socials?.twitter ? "text-red-600" : ""}>
+            <FormLabel className={(formState.errors.socials as any)?.twitter ? "text-red-600" : ""}>
               X / Twitter
             </FormLabel>
             <FormControl>
@@ -35,7 +35,7 @@ export function SocialLinks({ control }: SocialLinksProps) {
                 <Input {...field} className="pl-9" placeholder="https://x.com/username" />
               </div>
             </FormControl>
-            <FormMessage className={formState.errors.socials?.twitter ? "text-red-600" : ""} />
+            <FormMessage className={(formState.errors.socials as any)?.twitter ? "text-red-600" : ""} />
           </FormItem>
         )}
       />
@@ -44,7 +44,7 @@ export function SocialLinks({ control }: SocialLinksProps) {
         name="socials.telegram"
         render={({ field, formState }) => (
           <FormItem>
-            <FormLabel className={formState.errors.socials?.telegram ? "text-red-600" : ""}>
+            <FormLabel className={(formState.errors.socials as any)?.telegram ? "text-red-600" : ""}>
               Telegram
             </FormLabel>
             <FormControl>
@@ -53,7 +53,7 @@ export function SocialLinks({ control }: SocialLinksProps) {
                 <Input {...field} className="pl-9" placeholder="https://t.me/groupname" />
               </div>
             </FormControl>
-            <FormMessage className={formState.errors.socials?.telegram ? "text-red-600" : ""} />
+            <FormMessage className={(formState.errors.socials as any)?.telegram ? "text-red-600" : ""} />
           </FormItem>
         )}
       />
@@ -62,7 +62,7 @@ export function SocialLinks({ control }: SocialLinksProps) {
         name="socials.discord"
         render={({ field, formState }) => (
           <FormItem>
-            <FormLabel className={formState.errors.socials?.discord ? "text-red-600" : ""}>
+            <FormLabel className={(formState.errors.socials as any)?.discord ? "text-red-600" : ""}>
               Discord
             </FormLabel>
             <FormControl>
@@ -71,7 +71,7 @@ export function SocialLinks({ control }: SocialLinksProps) {
                 <Input {...field} className="pl-9" placeholder="https://discord.gg/invitecode" />
               </div>
             </FormControl>
-            <FormMessage className={formState.errors.socials?.discord ? "text-red-600" : ""} />
+            <FormMessage className={(formState.errors.socials as any)?.discord ? "text-red-600" : ""} />
           </FormItem>
         )}
       />

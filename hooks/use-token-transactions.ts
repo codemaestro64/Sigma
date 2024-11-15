@@ -84,7 +84,7 @@ export function useTokenTransactions(tokenAddress: string) {
       try {
         const data = await request(SUBGRAPH_URL, query, {
           tokenAddress: tokenAddress.toLowerCase(),
-        });
+        }) as any;
 
         if (!mounted.current) return;
 

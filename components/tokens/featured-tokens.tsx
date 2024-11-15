@@ -33,7 +33,7 @@ export function FeaturedTokens({ tokens }: { tokens?: Token[] }) {
         <CardContent className="space-y-1 p-1">
           {promotedTokens.map((token) => {
             const price = prices[token.address] || 0;
-            const usdPrice = price * ethUsdPrice;
+            const usdPrice = +price * ethUsdPrice;
 
             return (
               <Link

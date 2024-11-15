@@ -35,6 +35,46 @@ type NewTokenTransaction = BaseTransaction & {
   creator: string;
 }
 
+type TokensBought = {
+  id: string;
+  tokenAddress: string;
+  buyer: string;
+  amount: string;
+  ethSpent: string;
+  blockTimestamp: string;
+  transactionHash: string;
+};
+
+type TokensSold = {
+  id: string;
+  tokenAddress: string;
+  seller: string;
+  amount: string;
+  ethReceived: string;
+  blockTimestamp: string;
+  transactionHash: string;
+};
+
+type TokenCreated = {
+  id: string;
+  tokenAddress: string;
+  creator: string;
+  name: string;
+  symbol: string;
+  blockTimestamp: string;
+  transactionHash: string;
+};
+
+type RecentTransactionsResponse = {
+  tokensBoughts: TokensBought[];
+  tokensSolds: TokensSold[];
+};
+
+type NewTokensResponse = {
+  tokenCreateds: TokenCreated[];
+};
+
+
 export type Transaction = BuyTransaction | SellTransaction | NewTokenTransaction;
 
 const SUBGRAPH_URL = 'https://api.studio.thegraph.com/query/93277/testfl/0.0.1';
@@ -98,16 +138,16 @@ export function useRecentTransactions() {
   const fetchTransactions = async () => {
     try {
       const [tradeData, factoryData] = await Promise.all([
-        request(SUBGRAPH_URL, GET_RECENT_TRANSACTIONS),
-        request(FACTORY_SUBGRAPH_URL, GET_NEW_TOKENS),
+        request<RecentTransactionsResponse>(SUBGRAPH_URL, GET_RECENT_TRANSACTIONS),
+        request<NewTokensResponse>(FACTORY_SUBGRAPH_URL, GET_NEW_TOKENS),
       ]);
       
       if (!mounted.current) return;
 
       // Create a Set of unique token addresses from buy and sell transactions
       const tokenAddresses = new Set([
-        ...tradeData.tokensBoughts.map((event: any) => event.tokenAddress),
-        ...tradeData.tokensSolds.map((event: any) => event.tokenAddress),
+        ...tradeData?.tokensBoughts?.map((event: any) => event.tokenAddress),
+        ...tradeData?.tokensSolds?.map((event: any) => event.tokenAddress),
       ]);
 
       // Batch fetch metadata for all unique tokens

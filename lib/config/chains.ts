@@ -1,7 +1,6 @@
 import { fantomTestnet } from "wagmi/chains";
-import { Chain } from "wagmi";
 
-export const supportedChains: Chain[] = [fantomTestnet];
+export const supportedChains = [fantomTestnet];
 
 export const defaultChain = fantomTestnet;
 

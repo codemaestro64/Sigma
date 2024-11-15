@@ -8,21 +8,21 @@ export function useTokenData(tokenAddress?: string) {
     address: tokenAddress as `0x${string}`,
     abi: FAIR_TOKEN_ABI,
     functionName: 'name',
-    enabled: !!tokenAddress,
+    // enabled: !!tokenAddress,
   });
 
   const { data: symbol } = useContractRead({
     address: tokenAddress as `0x${string}`,
     abi: FAIR_TOKEN_ABI,
     functionName: 'symbol',
-    enabled: !!tokenAddress,
+    // enabled: !!tokenAddress,
   });
 
   const { data: decimals } = useContractRead({
     address: tokenAddress as `0x${string}`,
     abi: FAIR_TOKEN_ABI,
     functionName: 'decimals',
-    enabled: !!tokenAddress,
+    // enabled: !!tokenAddress,
   });
 
   return {

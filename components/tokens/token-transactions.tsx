@@ -11,7 +11,7 @@ export function TokenTransactions({ token }: TokenTransactionsProps) {
   return (
     <div className="bg-card rounded-lg p-6">
       <h2 className="text-xl font-semibold mb-4">Recent Transactions</h2>
-      <TransactionHistory tokenAddress={token.address} />
+      <TransactionHistory token_address={token.address} />
     </div>
   );
 }

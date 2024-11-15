@@ -8,7 +8,13 @@ export interface PromotionDetails {
 }
 
 export interface TokenStore {
+  previousPositions: any;
+  currentPositions: any;
   tokens: Record<string, {
+    tokensRemaining: string;
+    migrationProgress: number;
+    updatesLoading: boolean;
+    isLoading: boolean;
     transactions: any[];
     lastUpdate: number;
   }>;
@@ -30,7 +36,7 @@ export const useTokenStore = create<TokenStore>((set) => ({
   previousPositions: {},
   currentPositions: {},
   updateToken: (address, data) => 
-    set((state) => ({
+    set((state: any) => ({
       tokens: {
         ...state.tokens,
         [address]: data

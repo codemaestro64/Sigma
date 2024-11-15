@@ -59,7 +59,7 @@ function TokenListItem({ token }: { token: Token }) {
           <div className="flex items-start space-x-4">
             <div className="relative h-12 w-12 overflow-hidden rounded-lg">
               <Image
-                src={token.icon}
+                src={token.icon as string}
                 alt={token.name}
                 fill
                 className="object-cover"

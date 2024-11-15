@@ -31,13 +31,13 @@ import {
 } from "@/components/ui/pagination";
 
 interface TransactionHistoryProps {
-  token?: Token;
+  token_address?: string;
 }
 
 const TRANSACTIONS_PER_PAGE = 10;
 
-export function TransactionHistory({ token }: TransactionHistoryProps) {
-  const tokenData = useTokenStore((state) => token?.address ? state.tokens[token.address] : null);
+export function TransactionHistory({ token_address }: TransactionHistoryProps) {
+  const tokenData = useTokenStore((state) => token_address ? state.tokens[token_address] : null);
   const [lastUpdate, setLastUpdate] = useState(Date.now());
   const [currentPage, setCurrentPage] = useState(1);
   
@@ -47,7 +47,7 @@ export function TransactionHistory({ token }: TransactionHistoryProps) {
     }
   }, [tokenData?.lastUpdate]);
 
-  if (!token) {
+  if (!token_address) {
     return (
       <div className="bg-card rounded-lg p-6">
         <h2 className="text-lg font-semibold mb-4">Recent Transactions</h2>
@@ -178,7 +178,7 @@ export function TransactionHistory({ token }: TransactionHistoryProps) {
             
             {/* Current page and neighbors */}
             {Array.from({ length: 3 }, (_, i) => {
-              let pageNumber;
+              let pageNumber: any;
               if (currentPage <= 2) {
                 // At the start, show 1, 2, 3
                 pageNumber = i + 1;

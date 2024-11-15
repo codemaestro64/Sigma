@@ -6,7 +6,7 @@ import { FAIR_LAUNCH_ADDRESS } from '@/lib/contracts/addresses';
 import { formatEther, parseEther } from 'viem';
 import { useState, useEffect } from 'react';
 
-export function useTokenPrice(tokenAddress: string) {
+export function useTokenPrice(tokenAddress?: string) {
   const [ethUsdPrice, setEthUsdPrice] = useState(0);
   const { data: priceData } = useContractRead({
     address: FAIR_LAUNCH_ADDRESS,
